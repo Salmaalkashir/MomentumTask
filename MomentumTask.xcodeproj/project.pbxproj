@@ -19,6 +19,9 @@
 		3885761C2CEE70410068B6BF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3885761B2CEE70410068B6BF /* Constants.swift */; };
 		3885761E2CEE70ED0068B6BF /* APIBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3885761D2CEE70ED0068B6BF /* APIBuilder.swift */; };
 		388576202CEE71200068B6BF /* Encodable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3885761F2CEE71200068B6BF /* Encodable+Extension.swift */; };
+		388576222CEE75170068B6BF /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388576212CEE75170068B6BF /* CoreDataManager.swift */; };
+		388576242CEE77660068B6BF /* Competitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388576232CEE77660068B6BF /* Competitions.swift */; };
+		388576272CEE82C60068B6BF /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388576262CEE82C60068B6BF /* Helpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +39,9 @@
 		3885761B2CEE70410068B6BF /* Constants.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; tabWidth = 2; };
 		3885761D2CEE70ED0068B6BF /* APIBuilder.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = APIBuilder.swift; sourceTree = "<group>"; tabWidth = 2; };
 		3885761F2CEE71200068B6BF /* Encodable+Extension.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = "Encodable+Extension.swift"; sourceTree = "<group>"; tabWidth = 2; };
+		388576212CEE75170068B6BF /* CoreDataManager.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; tabWidth = 2; };
+		388576232CEE77660068B6BF /* Competitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Competitions.swift; sourceTree = "<group>"; };
+		388576262CEE82C60068B6BF /* Helpers.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; tabWidth = 2; };
 		571724B0C717464583A8C55C /* Pods-MomentumTask.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MomentumTask.release.xcconfig"; path = "Target Support Files/Pods-MomentumTask/Pods-MomentumTask.release.xcconfig"; sourceTree = "<group>"; };
 		F4B49915C2E687CAA1A4904A /* Pods_MomentumTask.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MomentumTask.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -73,6 +79,7 @@
 		388575DF2CEE67170068B6BF /* MomentumTask */ = {
 			isa = PBXGroup;
 			children = (
+				388576252CEE81B60068B6BF /* Helpers */,
 				388576082CEE6DF30068B6BF /* Application */,
 				388576072CEE6D3A0068B6BF /* Resources */,
 				388575F72CEE6B190068B6BF /* Extensions */,
@@ -105,6 +112,7 @@
 		388575F92CEE6B2B0068B6BF /* CoreDataManager */ = {
 			isa = PBXGroup;
 			children = (
+				388576212CEE75170068B6BF /* CoreDataManager.swift */,
 			);
 			path = CoreDataManager;
 			sourceTree = "<group>";
@@ -247,6 +255,7 @@
 		3885760E2CEE6E4D0068B6BF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				388576232CEE77660068B6BF /* Competitions.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -327,6 +336,14 @@
 			children = (
 			);
 			path = Repository;
+			sourceTree = "<group>";
+		};
+		388576252CEE81B60068B6BF /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				388576262CEE82C60068B6BF /* Helpers.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		ABC95E99A583CA78F4E7A162 /* Pods */ = {
@@ -465,10 +482,13 @@
 				388576202CEE71200068B6BF /* Encodable+Extension.swift in Sources */,
 				388575E12CEE67170068B6BF /* AppDelegate.swift in Sources */,
 				3885761A2CEE6F610068B6BF /* NetworkManager.swift in Sources */,
+				388576272CEE82C60068B6BF /* Helpers.swift in Sources */,
 				388575EB2CEE67170068B6BF /* MomentumTask.xcdatamodeld in Sources */,
 				388575E32CEE67170068B6BF /* SceneDelegate.swift in Sources */,
+				388576222CEE75170068B6BF /* CoreDataManager.swift in Sources */,
 				3885761C2CEE70410068B6BF /* Constants.swift in Sources */,
 				3885761E2CEE70ED0068B6BF /* APIBuilder.swift in Sources */,
+				388576242CEE77660068B6BF /* Competitions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
