@@ -9,23 +9,23 @@
 /* Begin PBXBuildFile section */
 		388575E12CEE67170068B6BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388575E02CEE67170068B6BF /* AppDelegate.swift */; };
 		388575E32CEE67170068B6BF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388575E22CEE67170068B6BF /* SceneDelegate.swift */; };
-		388575E52CEE67170068B6BF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388575E42CEE67170068B6BF /* ViewController.swift */; };
-		388575E82CEE67170068B6BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 388575E62CEE67170068B6BF /* Main.storyboard */; };
 		388575EB2CEE67170068B6BF /* MomentumTask.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 388575E92CEE67170068B6BF /* MomentumTask.xcdatamodeld */; };
 		388575ED2CEE67350068B6BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 388575EC2CEE67350068B6BF /* Assets.xcassets */; };
 		388575F02CEE67350068B6BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 388575EE2CEE67350068B6BF /* LaunchScreen.storyboard */; };
+		388576052CEE6BFD0068B6BF /* CompetitionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388576032CEE6BFD0068B6BF /* CompetitionsViewController.swift */; };
+		388576062CEE6BFD0068B6BF /* CompetitionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 388576042CEE6BFD0068B6BF /* CompetitionsViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		388575DD2CEE67170068B6BF /* MomentumTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MomentumTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		388575E02CEE67170068B6BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		388575E22CEE67170068B6BF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		388575E42CEE67170068B6BF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		388575E72CEE67170068B6BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		388575EA2CEE67170068B6BF /* MomentumTask.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MomentumTask.xcdatamodel; sourceTree = "<group>"; };
 		388575EC2CEE67350068B6BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		388575EF2CEE67350068B6BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		388575F12CEE67350068B6BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		388576032CEE6BFD0068B6BF /* CompetitionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionsViewController.swift; sourceTree = "<group>"; };
+		388576042CEE6BFD0068B6BF /* CompetitionsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompetitionsViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,16 +58,256 @@
 		388575DF2CEE67170068B6BF /* MomentumTask */ = {
 			isa = PBXGroup;
 			children = (
-				388575E02CEE67170068B6BF /* AppDelegate.swift */,
-				388575E22CEE67170068B6BF /* SceneDelegate.swift */,
-				388575E42CEE67170068B6BF /* ViewController.swift */,
-				388575E62CEE67170068B6BF /* Main.storyboard */,
-				388575EC2CEE67350068B6BF /* Assets.xcassets */,
-				388575EE2CEE67350068B6BF /* LaunchScreen.storyboard */,
-				388575F12CEE67350068B6BF /* Info.plist */,
+				388576082CEE6DF30068B6BF /* Application */,
+				388576072CEE6D3A0068B6BF /* Resources */,
+				388575F72CEE6B190068B6BF /* Extensions */,
+				388575F82CEE6B220068B6BF /* NetworkManager */,
+				388575F92CEE6B2B0068B6BF /* CoreDataManager */,
+				388575FA2CEE6B3A0068B6BF /* Scenses */,
 				388575E92CEE67170068B6BF /* MomentumTask.xcdatamodeld */,
 			);
 			path = MomentumTask;
+			sourceTree = "<group>";
+		};
+		388575F72CEE6B190068B6BF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		388575F82CEE6B220068B6BF /* NetworkManager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = NetworkManager;
+			sourceTree = "<group>";
+		};
+		388575F92CEE6B2B0068B6BF /* CoreDataManager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CoreDataManager;
+			sourceTree = "<group>";
+		};
+		388575FA2CEE6B3A0068B6BF /* Scenses */ = {
+			isa = PBXGroup;
+			children = (
+				388575FB2CEE6B510068B6BF /* Competitions */,
+				388576092CEE6E100068B6BF /* CompetitionDetails */,
+				388576112CEE6E6D0068B6BF /* Matches */,
+			);
+			path = Scenses;
+			sourceTree = "<group>";
+		};
+		388575FB2CEE6B510068B6BF /* Competitions */ = {
+			isa = PBXGroup;
+			children = (
+				388575FC2CEE6B780068B6BF /* Data */,
+				388575FD2CEE6B820068B6BF /* Domain */,
+				388575FE2CEE6B880068B6BF /* Presentation */,
+			);
+			path = Competitions;
+			sourceTree = "<group>";
+		};
+		388575FC2CEE6B780068B6BF /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				388576022CEE6BAF0068B6BF /* Repository */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		388575FD2CEE6B820068B6BF /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				388576012CEE6BA90068B6BF /* Model */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		388575FE2CEE6B880068B6BF /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				388576002CEE6BA00068B6BF /* Views */,
+				388575FF2CEE6B980068B6BF /* ViewModel */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		388575FF2CEE6B980068B6BF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		388576002CEE6BA00068B6BF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				388576032CEE6BFD0068B6BF /* CompetitionsViewController.swift */,
+				388576042CEE6BFD0068B6BF /* CompetitionsViewController.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		388576012CEE6BA90068B6BF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		388576022CEE6BAF0068B6BF /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		388576072CEE6D3A0068B6BF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				388575F12CEE67350068B6BF /* Info.plist */,
+				388575EC2CEE67350068B6BF /* Assets.xcassets */,
+				388575EE2CEE67350068B6BF /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		388576082CEE6DF30068B6BF /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				388575E02CEE67170068B6BF /* AppDelegate.swift */,
+				388575E22CEE67170068B6BF /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		388576092CEE6E100068B6BF /* CompetitionDetails */ = {
+			isa = PBXGroup;
+			children = (
+				3885760F2CEE6E520068B6BF /* Data */,
+				3885760D2CEE6E420068B6BF /* Domain */,
+				3885760A2CEE6E260068B6BF /* Presentation */,
+			);
+			path = CompetitionDetails;
+			sourceTree = "<group>";
+		};
+		3885760A2CEE6E260068B6BF /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				3885760C2CEE6E3B0068B6BF /* Views */,
+				3885760B2CEE6E2D0068B6BF /* ViewModel */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		3885760B2CEE6E2D0068B6BF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		3885760C2CEE6E3B0068B6BF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3885760D2CEE6E420068B6BF /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				3885760E2CEE6E4D0068B6BF /* Model */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		3885760E2CEE6E4D0068B6BF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3885760F2CEE6E520068B6BF /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				388576102CEE6E580068B6BF /* Repository */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		388576102CEE6E580068B6BF /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		388576112CEE6E6D0068B6BF /* Matches */ = {
+			isa = PBXGroup;
+			children = (
+				388576172CEE6EAE0068B6BF /* Data */,
+				388576152CEE6E9E0068B6BF /* Domain */,
+				388576122CEE6E820068B6BF /* Presentation */,
+			);
+			path = Matches;
+			sourceTree = "<group>";
+		};
+		388576122CEE6E820068B6BF /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				388576142CEE6E980068B6BF /* Views */,
+				388576132CEE6E8C0068B6BF /* ViewModel */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		388576132CEE6E8C0068B6BF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		388576142CEE6E980068B6BF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		388576152CEE6E9E0068B6BF /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				388576162CEE6EA30068B6BF /* Model */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		388576162CEE6EA30068B6BF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		388576172CEE6EAE0068B6BF /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				388576182CEE6EB30068B6BF /* Repository */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		388576182CEE6EB30068B6BF /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repository;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -130,7 +370,7 @@
 			files = (
 				388575F02CEE67350068B6BF /* LaunchScreen.storyboard in Resources */,
 				388575ED2CEE67350068B6BF /* Assets.xcassets in Resources */,
-				388575E82CEE67170068B6BF /* Main.storyboard in Resources */,
+				388576062CEE6BFD0068B6BF /* CompetitionsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,7 +381,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				388575E52CEE67170068B6BF /* ViewController.swift in Sources */,
+				388576052CEE6BFD0068B6BF /* CompetitionsViewController.swift in Sources */,
 				388575E12CEE67170068B6BF /* AppDelegate.swift in Sources */,
 				388575EB2CEE67170068B6BF /* MomentumTask.xcdatamodeld in Sources */,
 				388575E32CEE67170068B6BF /* SceneDelegate.swift in Sources */,
@@ -151,14 +391,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		388575E62CEE67170068B6BF /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				388575E72CEE67170068B6BF /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		388575EE2CEE67350068B6BF /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -293,10 +525,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 99TN99P4UG;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MomentumTask/Info.plist;
+				INFOPLIST_FILE = MomentumTask/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -321,10 +552,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 99TN99P4UG;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MomentumTask/Info.plist;
+				INFOPLIST_FILE = MomentumTask/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
