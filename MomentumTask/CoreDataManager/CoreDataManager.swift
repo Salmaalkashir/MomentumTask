@@ -12,6 +12,7 @@ import CoreData
 protocol CoreDataManagerProtocol {
   func SaveCompetitionCoreData(competition: CompetitionInfo?)
   func RetrieveCompetitionsFromCoreData() -> [NSManagedObject]?
+  func SaveCompetitionDetailsCoreData(matches: Match?)
 }
 
 //MARK: - CoreDataManager
@@ -81,4 +82,42 @@ class CoreDataManager: CoreDataManagerProtocol {
       return nil
     }
   }
+  
+  //MARK: - CompetitionsDetails
+  func SaveCompetitionDetailsCoreData(matches: Match?) {
+    guard let matches = matches else {
+      print("Error: competitionDetails data is nil")
+      return
+    }
+    let fetchRequest: NSFetchRequest<NSManagedObject> = NSFetchRequest(entityName: "CompetitionDetails")
+    fetchRequest.predicate = NSPredicate(format: "matchID == %d", matches.id ?? 0)
+    
+    do {
+      let results = try managedContext.fetch(fetchRequest)
+      
+      if results.isEmpty {
+        let details = NSEntityDescription.insertNewObject(forEntityName: "CompetitionDetails", into: managedContext)
+        
+        details.setValue(matches.id, forKey: "matchID")
+        details.setValue(matches.status, forKey: "status")
+        details.setValue(matches.homeTeam?.shortName, forKey: "homeShortName")
+        details.setValue(matches.homeTeam?.name, forKey: "homeTeamName")
+        details.setValue(matches.awayTeam?.shortName, forKey: "awayShortName")
+        details.setValue(matches.awayTeam?.name, forKey: "awayTeamName")
+        details.setValue(Helpers.convertStringToData(image: matches.awayTeam?.crest ?? "" ), forKey: "awayTeamImage")
+        details.setValue(Helpers.convertStringToData(image: matches.homeTeam?.crest ?? "" ), forKey: "homeTeamImage")
+        details.setValue(Helpers.convertUTCDateString(matches.utcDate ?? "") , forKey: "matchDate")
+        details.setValue(matches.referees?[0].name, forKey: "referee")
+        details.setValue("\(matches.score?.fullTime?.away) - \(matches.score?.fullTime?.home)", forKey: "score")
+        details.setValue(matches.score?.winner, forKey: "winner")
+        
+        try self.managedContext.save()
+      } else {
+        print("Saved competitionsDetail to CoreData")
+      }
+    }catch {
+      print("Failed to fetch or save competitionsDetails CoreData")
+    }
+  }
+  
 }

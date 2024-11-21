@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22A380" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CompetitionDetails" representedClassName="CompetitionDetails" syncable="YES" codeGenerationType="class">
+        <attribute name="awayShortName" optional="YES" attributeType="String"/>
+        <attribute name="awayTeamImage" optional="YES" attributeType="Binary"/>
+        <attribute name="awayTeamName" optional="YES" attributeType="String"/>
+        <attribute name="homeShortName" optional="YES" attributeType="String"/>
+        <attribute name="homeTeamImage" optional="YES" attributeType="Binary"/>
+        <attribute name="homeTeamName" optional="YES" attributeType="String"/>
+        <attribute name="matchDate" optional="YES" attributeType="String"/>
+        <attribute name="matchID" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="referee" optional="YES" attributeType="String"/>
+        <attribute name="score" optional="YES" attributeType="String"/>
+        <attribute name="status" optional="YES" attributeType="String"/>
+        <attribute name="winner" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="Competitions" representedClassName="Competitions" syncable="YES" codeGenerationType="class">
         <attribute name="availableSeasons" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="code" optional="YES" attributeType="String"/>
@@ -7,5 +21,8 @@
         <attribute name="currentMatchDay" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="image" optional="YES" attributeType="Binary"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <fetchedProperty name="fetchedProperty" optional="YES">
+            <fetchRequest name="fetchedPropertyFetchRequest" entity="Competitions"/>
+        </fetchedProperty>
     </entity>
 </model>

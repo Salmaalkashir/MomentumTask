@@ -27,7 +27,7 @@ class CompetitionsViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     bindViewModel()
-    viewModel.fetchNewsData()
+    viewModel.fetchCompetitions()
     configureView()
   }
   
@@ -77,7 +77,7 @@ extension CompetitionsViewController: UICollectionViewDelegate, UICollectionView
     }else{
       if indexPath.row < competitions.count {
         cell.ConfigureCell(image: competitions[indexPath.row].emblemUrl ?? "" ,
-                             competitionName: competitions[indexPath.row].name,
+                             competitionName: competitions[indexPath.row].name ?? "",
                              competitionCode: competitions[indexPath.row].code ?? "",
                              matchDay: competitions[indexPath.row].currentSeason?.currentMatchday ?? 0,
                              numberOfSeasons: competitions[indexPath.row].numberOfAvailableSeasons ?? 0)
@@ -90,6 +90,11 @@ extension CompetitionsViewController: UICollectionViewDelegate, UICollectionView
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     let competitionDetails = CompetitionDetailsViewController()
+    if viewModel.isUsingCoreData{
+      competitionDetails.competitionID = viewModel.coreDataCompetitions?[indexPath.row].value(forKey: "competitionID") as? Int
+    }else {
+      competitionDetails.competitionID = competitions[indexPath.row].id
+    }
     self.navigationController?.pushViewController(competitionDetails, animated: true)
   }
   

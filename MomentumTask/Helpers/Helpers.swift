@@ -20,4 +20,23 @@ class Helpers {
       return nil
     }
   }
+  
+static func convertUTCDateString(_ utcDateString: String) -> String? {
+      let utcFormatter = DateFormatter()
+      utcFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+      utcFormatter.timeZone = TimeZone(abbreviation: "UTC")
+
+      guard let date = utcFormatter.date(from: utcDateString) else {
+          print("Invalid date format")
+          return nil
+      }
+    
+      let displayFormatter = DateFormatter()
+      displayFormatter.dateFormat = "yyyy/MM/dd, HH:mm"
+      displayFormatter.timeZone = TimeZone.current
+
+      let formattedDate = displayFormatter.string(from: date)
+      
+      return formattedDate
+  }
 }

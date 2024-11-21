@@ -1,23 +1,21 @@
 //
-//  CompetitionsRepository.swift
+//  CompetitionDetailsRepository.swift
 //  MomentumTask
 //
-//  Created by Salma on 20/11/2024.
+//  Created by Salma on 21/11/2024.
 //
 
 import Foundation
 import RxSwift
 import CoreData
 
-//MARK: - CompetitionsRepositoryProtocol
-protocol CompetitionsRepositoryProtocol {
-  func getCompetitionData() -> Observable<Competition>
-  func saveCompetitionsToCoreData(competition: CompetitionInfo)
-  func retrieveCompetitionFromCoreData() -> [NSManagedObject]
+//MARK: - CompetitionDetailsRepositoryProtocol
+protocol CompetitionDetailsRepositoryProtocol {
+  func getCompetitionDetailsData(competitionID: Int) -> Observable<Details>
 }
 
-//MARK: - CompetitionsRepository
-class CompetitionsRepository: CompetitionsRepositoryProtocol {
+//MARK: - CompetitionDetailsRepository
+class CompetitionDetailsRepository: CompetitionDetailsRepositoryProtocol {
   private let networkService: NetworkServiceProtocol
   private let coreData: CoreDataManagerProtocol
   private let disposeBag = DisposeBag()
@@ -27,12 +25,13 @@ class CompetitionsRepository: CompetitionsRepositoryProtocol {
     self.coreData = coreData
   }
   
-  func getCompetitionData() -> Observable<Competition> {
+  func getCompetitionDetailsData(competitionID: Int) -> Observable<Details> {
     let request = APIBuilder()
-      .setUrl(hostUrl: "https://api.football-data.org/v2/competitions")
+      .setUrl(hostUrl: "https://api.football-data.org/v4/competitions/\(competitionID)/matches")
+      .setHeaders(key: "X-Auth-Token", value: "53448c41dd2448c0b034bdb933779844")
       .build()
     
-    return networkService.requestData(Competition.self, request: request)
+    return networkService.requestData(Details.self, request: request)
       .observe(on: MainScheduler.instance)
       .catch { error in
         if let networkError = error as? NetworkError {
@@ -51,15 +50,15 @@ class CompetitionsRepository: CompetitionsRepositoryProtocol {
             return Observable.error(NetworkError.invalidResponse)
           }
         }
-        return Observable.error(error)  
+        return Observable.error(error)
       }
   }
   
-  func saveCompetitionsToCoreData(competition: CompetitionInfo) {
-    coreData.SaveCompetitionCoreData(competition: competition)
+  func saveCompetitionsDetailsToCoreData(match: Match) {
+    coreData.SaveCompetitionDetailsCoreData(matches: match)
   }
   
-  func retrieveCompetitionFromCoreData() -> [NSManagedObject] {
-   return coreData.RetrieveCompetitionsFromCoreData() ?? []
+  func retrieveCompetitionDetailsFromCoreData() -> [NSManagedObject] {
+    return coreData.RetrieveCompetitionsFromCoreData() ?? []
   }
 }

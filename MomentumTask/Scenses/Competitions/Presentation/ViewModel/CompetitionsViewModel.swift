@@ -11,7 +11,7 @@ import CoreData
 
 //MARK: - CompetitionsViewModelProtocol
 protocol CompetitionsViewModelProtocol{
-  func fetchNewsData()
+  func fetchCompetitions()
   var competitionData: Observable<[CompetitionInfo]>? {get}
   var errorMessage: Observable<String>? {get}
   var coreDataCompetitions: [NSManagedObject]? {get set}
@@ -44,16 +44,16 @@ class CompetitionsViewModel: CompetitionsViewModelProtocol {
       self.repository = repository
   }
 
-  func fetchNewsData() {
+  func fetchCompetitions() {
       print("Fetching news data...")
-      repository.getNewsData()
+      repository.getCompetitionData()
           .observe(on: MainScheduler.instance)
           .subscribe(
               onNext: { [weak self] comp in
-                  let filteredCompetitions = comp.competitions.filter { self?.freeCompetitionsIds.contains($0.id) == true }
-                  self?.competitions.onNext(filteredCompetitions)
+                let filteredCompetitions = comp.competitions?.filter { self?.freeCompetitionsIds.contains($0.id) == true }
+                self?.competitions.onNext(filteredCompetitions ?? [])
                 self?.isUsingCoreData = false
-                for competition in filteredCompetitions {
+                for competition in filteredCompetitions ?? [] {
                   self?.repository.saveCompetitionsToCoreData(competition: competition)
                 }
               },

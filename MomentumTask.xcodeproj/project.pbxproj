@@ -28,6 +28,9 @@
 		3885762B2CEE89FE0068B6BF /* CompetitionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3885762A2CEE89FE0068B6BF /* CompetitionsViewModel.swift */; };
 		3885762E2CEE90B10068B6BF /* CompetitionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3885762C2CEE90B10068B6BF /* CompetitionCollectionViewCell.swift */; };
 		3885762F2CEE90B10068B6BF /* CompetitionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3885762D2CEE90B10068B6BF /* CompetitionCollectionViewCell.xib */; };
+		388A7BC02CEEBF48006E46FC /* CompetitionDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388A7BBF2CEEBF48006E46FC /* CompetitionDetails.swift */; };
+		388A7BC22CEEBFFB006E46FC /* CompetitionDetailsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388A7BC12CEEBFFB006E46FC /* CompetitionDetailsRepository.swift */; };
+		388E1ABE2CEECD2D00694550 /* CompetitionDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388E1ABD2CEECD2D00694550 /* CompetitionDetailsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +57,9 @@
 		3885762A2CEE89FE0068B6BF /* CompetitionsViewModel.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = CompetitionsViewModel.swift; sourceTree = "<group>"; tabWidth = 2; };
 		3885762C2CEE90B10068B6BF /* CompetitionCollectionViewCell.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = CompetitionCollectionViewCell.swift; sourceTree = "<group>"; tabWidth = 2; };
 		3885762D2CEE90B10068B6BF /* CompetitionCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompetitionCollectionViewCell.xib; sourceTree = "<group>"; };
+		388A7BBF2CEEBF48006E46FC /* CompetitionDetails.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = CompetitionDetails.swift; sourceTree = "<group>"; tabWidth = 2; };
+		388A7BC12CEEBFFB006E46FC /* CompetitionDetailsRepository.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = CompetitionDetailsRepository.swift; sourceTree = "<group>"; tabWidth = 2; };
+		388E1ABD2CEECD2D00694550 /* CompetitionDetailsViewModel.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = CompetitionDetailsViewModel.swift; sourceTree = "<group>"; tabWidth = 2; };
 		571724B0C717464583A8C55C /* Pods-MomentumTask.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MomentumTask.release.xcconfig"; path = "Target Support Files/Pods-MomentumTask/Pods-MomentumTask.release.xcconfig"; sourceTree = "<group>"; };
 		F4B49915C2E687CAA1A4904A /* Pods_MomentumTask.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MomentumTask.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -258,6 +264,7 @@
 		3885760B2CEE6E2D0068B6BF /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				388E1ABD2CEECD2D00694550 /* CompetitionDetailsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -282,6 +289,7 @@
 		3885760E2CEE6E4D0068B6BF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				388A7BBF2CEEBF48006E46FC /* CompetitionDetails.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -297,6 +305,7 @@
 		388576102CEE6E580068B6BF /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				388A7BC12CEEBFFB006E46FC /* CompetitionDetailsRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -510,9 +519,12 @@
 				388576052CEE6BFD0068B6BF /* CompetitionsViewController.swift in Sources */,
 				388576202CEE71200068B6BF /* Encodable+Extension.swift in Sources */,
 				3885762B2CEE89FE0068B6BF /* CompetitionsViewModel.swift in Sources */,
+				388A7BC02CEEBF48006E46FC /* CompetitionDetails.swift in Sources */,
 				388575E12CEE67170068B6BF /* AppDelegate.swift in Sources */,
 				3885762E2CEE90B10068B6BF /* CompetitionCollectionViewCell.swift in Sources */,
 				3885761A2CEE6F610068B6BF /* NetworkManager.swift in Sources */,
+				388A7BC22CEEBFFB006E46FC /* CompetitionDetailsRepository.swift in Sources */,
+				388E1ABE2CEECD2D00694550 /* CompetitionDetailsViewModel.swift in Sources */,
 				388576272CEE82C60068B6BF /* Helpers.swift in Sources */,
 				388576292CEE881D0068B6BF /* CompetitionsRepository.swift in Sources */,
 				388575EB2CEE67170068B6BF /* MomentumTask.xcdatamodeld in Sources */,
