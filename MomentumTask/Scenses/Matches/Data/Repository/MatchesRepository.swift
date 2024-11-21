@@ -1,23 +1,21 @@
 //
-//  CompetitionsRepository.swift
+//  MatchRepository.swift
 //  MomentumTask
 //
-//  Created by Salma on 20/11/2024.
+//  Created by Salma on 2024-11-21.
 //
 
 import Foundation
 import RxSwift
 import CoreData
-
-//MARK: - CompetitionsRepositoryProtocol
-protocol CompetitionsRepositoryProtocol {
-  func getCompetitionData() -> Observable<Competition>
-  func saveCompetitionsToCoreData(competition: CompetitionInfo)
-  func retrieveCompetitionFromCoreData() -> [NSManagedObject]
+//MARK: - MatchRepositoryProtocol
+protocol MatchRepositoryProtocol {
+  func getMatchDetails(matchID: Int) -> Observable<Match>
+  func retrieveMatchDetailsFromCoreData(matchID: Int) -> [NSManagedObject]
 }
 
-//MARK: - CompetitionsRepository
-class CompetitionsRepository: CompetitionsRepositoryProtocol {
+//MARK: - MatchRepository
+class MatchRepository: MatchRepositoryProtocol {
   private let networkService: NetworkServiceProtocol
   private let coreData: CoreDataManagerProtocol
   private let disposeBag = DisposeBag()
@@ -27,12 +25,13 @@ class CompetitionsRepository: CompetitionsRepositoryProtocol {
     self.coreData = coreData
   }
   
-  func getCompetitionData() -> Observable<Competition> {
+  func getMatchDetails(matchID: Int) -> Observable<Match> {
     let request = APIBuilder()
-      .setUrl(hostUrl: "https://api.football-data.org/v4/competitions")
-     .setHeaders(key: "X-Auth-Token", value: "43de387ffc01456baaf9f05ba3500e15")
+      .setUrl(hostUrl: "https://api.football-data.org/v4/matches/\(matchID)")
+      .setHeaders(key: "X-Auth-Token", value: "43de387ffc01456baaf9f05ba3500e15")
       .build()
-    return networkService.requestData(Competition.self, request: request)
+    
+    return networkService.requestData(Match.self, request: request)
       .observe(on: MainScheduler.instance)
       .catch { error in
         if let networkError = error as? NetworkError {
@@ -55,11 +54,8 @@ class CompetitionsRepository: CompetitionsRepositoryProtocol {
       }
   }
   
-  func saveCompetitionsToCoreData(competition: CompetitionInfo) {
-    coreData.SaveCompetitionCoreData(competition: competition)
-  }
+  func retrieveMatchDetailsFromCoreData(matchID: Int) -> [NSManagedObject] {
+    return coreData.RetrieveMatchDetailsFromCoreData(matchID: matchID) ?? []
+    }
   
-  func retrieveCompetitionFromCoreData() -> [NSManagedObject] {
-   return coreData.RetrieveCompetitionsFromCoreData() ?? []
-  }
 }

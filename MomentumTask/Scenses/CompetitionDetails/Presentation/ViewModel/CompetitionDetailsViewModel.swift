@@ -43,7 +43,7 @@ class CompetitionDetailsViewModel: CompetitionDetailsViewModelProtocol {
   var competitionID: Int?
 
   func fetchCompetitionDetails() {
-      print("Fetching news data...")
+      print("Fetching data...")
     repository.getCompetitionDetailsData(competitionID: competitionID ?? 0)
           .observe(on: MainScheduler.instance)
           .subscribe(

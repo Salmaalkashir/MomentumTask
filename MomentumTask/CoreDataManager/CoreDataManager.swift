@@ -14,6 +14,7 @@ protocol CoreDataManagerProtocol {
   func RetrieveCompetitionsFromCoreData() -> [NSManagedObject]?
   func SaveCompetitionDetailsCoreData(matches: Match?)
   func RetrieveCompetitionDetailsFromCoreData(competitionID: Int) -> [NSManagedObject]?
+  func RetrieveMatchDetailsFromCoreData(matchID: Int) -> [NSManagedObject]?
 }
 
 //MARK: - CoreDataManager
@@ -59,7 +60,17 @@ class CoreDataManager: CoreDataManagerProtocol {
         competitions.setValue(competition.numberOfAvailableSeasons, forKey: "availableSeasons")
         competitions.setValue(competition.code, forKey: "code")
         competitions.setValue(competition.currentSeason?.currentMatchday, forKey: "currentMatchDay")
-        competitions.setValue(Helpers.convertStringToDataAsync(image: competition.emblemUrl ?? ""), forKey: "image")
+        Helpers.convertStringToData(image: competition.emblem ?? "", completion: { data in
+          if let imageData = data {
+            // You can now use imageData (e.g., to set the image in a UIImageView)
+            DispatchQueue.main.async {
+              competitions.setValue(imageData, forKey: "image")
+            }
+          } else {
+            // Handle error (e.g., show a placeholder image)
+          }
+        })
+        
         try self.managedContext.save()
       } else {
         print("Saved competitions to CoreData")
@@ -74,6 +85,7 @@ class CoreDataManager: CoreDataManagerProtocol {
     do {
       let retrievedArray = try managedContext.fetch(fetchRequest)
       if retrievedArray.count > 0 {
+        
         return retrievedArray
       } else {
         print("No competitions found in CoreData")
@@ -99,7 +111,7 @@ class CoreDataManager: CoreDataManagerProtocol {
       
       if results.isEmpty {
         let details = NSEntityDescription.insertNewObject(forEntityName: "CompetitionDetails", into: managedContext)
-        let competitionID = matches.competition?.competitions?[0].id
+        let competitionID = matches.competition?.id
         details.setValue(competitionID, forKey: "competitionID")
         details.setValue(matches.id, forKey: "matchID")
         details.setValue(matches.status, forKey: "status")
@@ -107,54 +119,67 @@ class CoreDataManager: CoreDataManagerProtocol {
         details.setValue(matches.homeTeam?.name, forKey: "homeTeamName")
         details.setValue(matches.awayTeam?.shortName, forKey: "awayShortName")
         details.setValue(matches.awayTeam?.name, forKey: "awayTeamName")
-        details.setValue(Helpers.convertStringToDataAsync(image: matches.awayTeam?.crest ?? "" ), forKey: "awayTeamImage")
-        details.setValue(Helpers.convertStringToDataAsync(image: matches.homeTeam?.crest ?? "" ), forKey: "homeTeamImage")
-        details.setValue(Helpers.convertUTCDateString(matches.utcDate ?? "") , forKey: "matchDate")
-        if let referees = matches.referees, !referees.isEmpty {
-            details.setValue(referees[0].name, forKey: "referee")
-        } else {
-            // If referees is nil or empty, set an empty string or some default value
-            details.setValue("", forKey: "referee")
-        }
-       // details.setValue(matches.referees?[0].name ?? "", forKey: "referee")
         details.setValue("\(matches.score?.fullTime?.away ?? 0) - \(matches.score?.fullTime?.home ?? 0)", forKey: "score")
-     //   details.setValue(matches.score?.winner, forKey: "winner")
+        let date = Helpers.convertUTCDateAndTime(matches.utcDate ?? "")
+        details.setValue(date?.date, forKey: "matchDate")
+        details.setValue(date?.time, forKey: "matchTime")
+        details.setValue("\(matches.score?.halfTime?.away ?? 0) - \(matches.score?.halfTime?.home ?? 0)", forKey: "halfScore")
+        details.setValue(matches.score?.duration, forKey: "matchDuration")
         
+        if let awayTeamCrest = matches.awayTeam?.crest {
+               Helpers.convertStringToData(image: awayTeamCrest) { data in
+                   details.setValue(data, forKey: "awayTeamImage")
+               }
+           }
+
+           // Save homeTeamImage
+           if let homeTeamCrest = matches.homeTeam?.crest {
+               Helpers.convertStringToData(image: homeTeamCrest) { data in
+                   details.setValue(data, forKey: "homeTeamImage")
+               }
+           }
         try self.managedContext.save()
+        print("Saved competitionsDetail to CoreData successfully.")
       } else {
-        print("Saved competitionsDetail to CoreData")
+        print("Competition details already exist in Core Data.")
       }
-    }catch {
-      print("Failed to fetch or save competitionsDetails CoreData")
+    } catch {
+      print("Failed to fetch or save competitionsDetails CoreData: \(error.localizedDescription)")
     }
   }
   
   func RetrieveCompetitionDetailsFromCoreData(competitionID: Int) -> [NSManagedObject]? {
-      let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "CompetitionDetails")
-      fetchRequest.predicate = NSPredicate(format: "competitionID = %d", competitionID)
-      
-      do {
-          let retrievedArray = try managedContext.fetch(fetchRequest)
-          if retrievedArray.isEmpty {
-              print("No competition details found in Core Data")
-              return nil
-          }
-          
-          // Iterate over the retrieved objects and print competition IDs
-          for (index, competitionDetail) in retrievedArray.enumerated() {
-              if let competitionID = competitionDetail.value(forKey: "competitionID") {
-                  print("Competition \(index): \(competitionID)")
-              } else {
-                  print("Competition \(index): No ID found")
-              }
-          }
-          
-          return retrievedArray
-      } catch {
-          print("Failed to fetch competition details from Core Data: \(error)")
-          return nil
+    let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "CompetitionDetails")
+    fetchRequest.predicate = NSPredicate(format: "competitionID = %d", competitionID)
+    do {
+      let retrievedArray = try managedContext.fetch(fetchRequest)
+      if retrievedArray.count > 0 {
+        print("IMAGEL:\(retrievedArray[0].value(forKey: "homeTeamImage"))")
+        return retrievedArray
+      } else {
+        print("No competitions found in CoreData")
+        return nil
       }
+    } catch {
+      print("Failed to fetch competitions from CoreData: \(error)")
+      return nil
+    }
   }
-
   
+  func RetrieveMatchDetailsFromCoreData(matchID: Int) -> [NSManagedObject]? {
+    let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "CompetitionDetails")
+    fetchRequest.predicate = NSPredicate(format: "matchID = %d", matchID)
+    do {
+      let retrievedArray = try managedContext.fetch(fetchRequest)
+      if retrievedArray.count > 0 {
+        return retrievedArray
+      } else {
+        print("No matches found in CoreData")
+        return nil
+      }
+    } catch {
+      print("Failed to fetch matches from CoreData: \(error)")
+      return nil
+    }
+  }
 }

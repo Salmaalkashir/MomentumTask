@@ -10,6 +10,7 @@ struct Competition: Codable {
     let count: Int?
     let filters: Filters?
     let competitions: [CompetitionInfo]?
+    let id: Int?
 }
 
 // MARK: - Competition
@@ -18,7 +19,7 @@ struct CompetitionInfo: Codable {
     let area: Area?
     let name: String?
     let code: String?
-    let emblemUrl: String?
+    let emblem: String?
     let plan: Plan?
     let currentSeason: CurrentSeason?
     let numberOfAvailableSeasons: Int?

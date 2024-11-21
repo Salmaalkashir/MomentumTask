@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CompetitionDetailsViewController" customModule="MomentumTask" customModuleProvider="target">
             <connections>
+                <outlet property="emptyLabel" destination="0ge-UQ-0RD" id="leL-JH-7In"/>
                 <outlet property="matchesCollectionView" destination="q6v-9E-1NN" id="Cvd-te-YqA"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -29,12 +30,20 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There is no competitions in coredata..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ge-UQ-0RD">
+                    <rect key="frame" x="35.333333333333343" y="414.66666666666669" width="322.33333333333326" height="23"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="q6v-9E-1NN" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="8" id="29i-cO-nQH"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="q6v-9E-1NN" secondAttribute="trailing" constant="8" id="iuK-In-bwL"/>
+                <constraint firstItem="0ge-UQ-0RD" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="o2N-gC-JrC"/>
+                <constraint firstItem="0ge-UQ-0RD" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="qcV-9v-fWU"/>
                 <constraint firstItem="q6v-9E-1NN" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="24" id="ujw-yw-S53"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="q6v-9E-1NN" secondAttribute="bottom" constant="24" id="yUs-Fw-FSF"/>
             </constraints>

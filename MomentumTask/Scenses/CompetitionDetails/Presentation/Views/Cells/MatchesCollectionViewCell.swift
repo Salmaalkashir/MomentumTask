@@ -29,7 +29,7 @@ class MatchesCollectionViewCell: UICollectionViewCell {
     func configureCell(homeTeamImage: Any, homeTeamName: String,  homeShortName: String, awayTeamImage: Any, awayTeamName: String, awayShortName: String, score: String, status: String) {
         SDImageCodersManager.shared.addCoder(SDImageSVGCoder.shared)
         if let imageString = homeTeamImage as? String {
-            self.homeTeamImage.sd_setImage(with: URL(string: imageString),placeholderImage: UIImage(named: "splash"))
+            self.homeTeamImage.sd_setImage(with: URL(string: imageString),placeholderImage: UIImage(named: "placeholderImage"))
         } else if let imageData = homeTeamImage as? Data {
             if let image = UIImage(data: imageData) {
                 self.homeTeamImage.image = image
@@ -37,7 +37,7 @@ class MatchesCollectionViewCell: UICollectionViewCell {
         }
         
         if let imageString = awayTeamImage as? String {
-            self.awayTeamImage.sd_setImage(with: URL(string: imageString),placeholderImage: UIImage(named: "splash"))
+            self.awayTeamImage.sd_setImage(with: URL(string: imageString),placeholderImage: UIImage(named: "placeholderImage"))
         } else if let imageData = awayTeamImage as? Data {
             if let image = UIImage(data: imageData) {
                 self.awayTeamImage.image = image

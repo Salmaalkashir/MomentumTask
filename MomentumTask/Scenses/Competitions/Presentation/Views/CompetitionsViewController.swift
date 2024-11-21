@@ -73,10 +73,10 @@ extension CompetitionsViewController: UICollectionViewDelegate, UICollectionView
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "competition", for: indexPath) as! CompetitionCollectionViewCell
     if viewModel.isUsingCoreData {
-      cell.ConfigureCell(image: viewModel.coreDataCompetitions?[indexPath.row].value(forKey: "image") ?? Data(), competitionName: viewModel.coreDataCompetitions?[indexPath.row].value(forKey: "name") as! String , competitionCode: viewModel.coreDataCompetitions?[indexPath.row].value(forKey: "code") as! String , matchDay: viewModel.coreDataCompetitions?[indexPath.row].value(forKey: "currentMatchDay") as! Int, numberOfSeasons: viewModel.coreDataCompetitions?[indexPath.row].value(forKey: "availableSeasons") as! Int)
+      cell.ConfigureCell(image: viewModel.coreDataCompetitions?[indexPath.row].value(forKey: "image") as! Data , competitionName: viewModel.coreDataCompetitions?[indexPath.row].value(forKey: "name") as! String , competitionCode: viewModel.coreDataCompetitions?[indexPath.row].value(forKey: "code") as! String , matchDay: viewModel.coreDataCompetitions?[indexPath.row].value(forKey: "currentMatchDay") as! Int, numberOfSeasons: viewModel.coreDataCompetitions?[indexPath.row].value(forKey: "availableSeasons") as! Int)
     }else{
       if indexPath.row < competitions.count {
-        cell.ConfigureCell(image: competitions[indexPath.row].emblemUrl ?? "" ,
+        cell.ConfigureCell(image: competitions[indexPath.row].emblem ?? "" ,
                              competitionName: competitions[indexPath.row].name ?? "",
                              competitionCode: competitions[indexPath.row].code ?? "",
                              matchDay: competitions[indexPath.row].currentSeason?.currentMatchday ?? 0,

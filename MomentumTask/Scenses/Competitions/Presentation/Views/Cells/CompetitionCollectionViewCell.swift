@@ -23,22 +23,14 @@ class CompetitionCollectionViewCell: UICollectionViewCell {
   }
   
   func ConfigureCell(image: Any, competitionName: String, competitionCode: String, matchDay: Int, numberOfSeasons: Int) {
-     SDImageCodersManager.shared.addCoder(SDImageSVGCoder.shared)
-     
-     if let imageString = image as? String {
-       competitionImage.sd_setImage(with: URL(string: imageString), placeholderImage: UIImage(named: "splash"))
-     } else if let imageData = image as? Data {
-       // Try converting image to non-indexed format if it's indexed PNG
-       if let image = UIImage(data: imageData) {
-         if let cgImage = image.cgImage, cgImage.colorSpace?.model == .indexed {
-           // Workaround: Convert indexed image to RGBA
-           competitionImage.image = UIImage(cgImage: cgImage.copy()!)
-         } else {
-           competitionImage.image = image
-         }
-       }
-     }
-     
+    SDImageCodersManager.shared.addCoder(SDImageSVGCoder.shared)
+    if let imageString = image as? String {
+        self.competitionImage.sd_setImage(with: URL(string: imageString),placeholderImage: UIImage(named: "placeholderImage"))
+    } else if let imageData = image as? Data {
+        if let image = UIImage(data: imageData) {
+            self.competitionImage.image = image
+        }
+    }
      self.competitionName.text = competitionName
      self.competitionCode.text = "Code: \(competitionCode)"
      self.matchDay.text = "Current match day: \(String(matchDay))"

@@ -10,6 +10,7 @@ import RxSwift
 
 class CompetitionDetailsViewController: UIViewController {
   @IBOutlet private weak var matchesCollectionView: UICollectionView!
+  @IBOutlet private weak var emptyLabel: UILabel!
   private let disposeBag = DisposeBag()
   private var viewModel: CompetitionDetailsViewModelProtocol
   private var matches: [Match] = []
@@ -30,11 +31,11 @@ class CompetitionDetailsViewController: UIViewController {
     super.viewDidLoad()
     self.title = competitionName ?? ""
     addBackButton()
-    print("ID:\(competitionID ?? 0)")
-      viewModel.competitionID = competitionID
+    configureViews()
+    viewModel.competitionID = competitionID
     viewModel.fetchCompetitionDetails()
     bindViewModel()
-    configureViews()
+    
   }
   override func viewWillAppear(_ animated: Bool) {
     self.navigationItem.hidesBackButton = true
@@ -45,6 +46,7 @@ class CompetitionDetailsViewController: UIViewController {
     matchesCollectionView.delegate = self
     let nib = UINib(nibName: "MatchesCollectionViewCell", bundle: nil)
     matchesCollectionView.register(nib, forCellWithReuseIdentifier: "matches")
+    emptyLabel.isHidden = true
   }
   private func bindViewModel() {
     viewModel.competitionDetailsData?
@@ -61,8 +63,9 @@ class CompetitionDetailsViewController: UIViewController {
     viewModel.errorMessage?
       .observe(on: MainScheduler.instance)
       .subscribe(onNext: { [weak self] errorMessage in
-        if errorMessage == "No Internet Connection" {
+        if errorMessage == "An unknown error occurred."  || errorMessage == "No Internet Connection" {
           self?.viewModel.coreDataCompetitionDetails = self?.viewModel.retrieveCompetitionFromCoreData()
+          self?.emptyLabel.isHidden = false
           self?.matchesCollectionView.reloadData()
           print("CORE DATA")
         } else {
@@ -76,9 +79,14 @@ class CompetitionDetailsViewController: UIViewController {
 //MARK: -UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
 extension CompetitionDetailsViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    print("Count Dataaaa:\(viewModel.coreDataCompetitionDetails?.count ?? 0)")
     if viewModel.isUsingCoreData{
-      return viewModel.coreDataCompetitionDetails?.count ?? 0
+      if viewModel.coreDataCompetitionDetails?.count == 0 {
+        emptyLabel.isHidden = false
+        return 0
+      }else{
+        emptyLabel.isHidden = true
+        return viewModel.coreDataCompetitionDetails?.count ?? 0
+      }
     }else{
       return matches.count
     }
@@ -87,7 +95,7 @@ extension CompetitionDetailsViewController: UICollectionViewDataSource, UICollec
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "matches", for: indexPath) as! MatchesCollectionViewCell
     if viewModel.isUsingCoreData{
-      cell.configureCell(homeTeamImage: viewModel.coreDataCompetitionDetails?[indexPath.row].value(forKey: "homeTeamImage") ?? Data(), homeTeamName: viewModel.coreDataCompetitionDetails?[indexPath.row].value(forKey: "homeTeamName")  as! String, homeShortName: viewModel.coreDataCompetitionDetails?[indexPath.row].value(forKey: "homeShortName")  as! String, awayTeamImage:  viewModel.coreDataCompetitionDetails?[indexPath.row].value(forKey: "awayTeamImage") ?? Data(), awayTeamName: viewModel.coreDataCompetitionDetails?[indexPath.row].value(forKey: "awayTeamName")  as! String, awayShortName: viewModel.coreDataCompetitionDetails?[indexPath.row].value(forKey: "awayShortName")  as! String, score: viewModel.coreDataCompetitionDetails?[indexPath.row].value(forKey: "score")  as! String, status: viewModel.coreDataCompetitionDetails?[indexPath.row].value(forKey: "status")  as! String)
+      cell.configureCell(homeTeamImage: viewModel.coreDataCompetitionDetails?[indexPath.row].value(forKey: "homeTeamImage") as? Data ?? Data(), homeTeamName: viewModel.coreDataCompetitionDetails?[indexPath.row].value(forKey: "homeTeamName")  as! String, homeShortName: viewModel.coreDataCompetitionDetails?[indexPath.row].value(forKey: "homeShortName")  as! String, awayTeamImage:  viewModel.coreDataCompetitionDetails?[indexPath.row].value(forKey: "awayTeamImage") as? Data ?? Data(), awayTeamName: viewModel.coreDataCompetitionDetails?[indexPath.row].value(forKey: "awayTeamName")  as! String, awayShortName: viewModel.coreDataCompetitionDetails?[indexPath.row].value(forKey: "awayShortName")  as! String, score: viewModel.coreDataCompetitionDetails?[indexPath.row].value(forKey: "score")  as! String, status: viewModel.coreDataCompetitionDetails?[indexPath.row].value(forKey: "status")  as! String)
     }else {
       let score = "\(matches[indexPath.row].score?.fullTime?.away ?? 0) - \(matches[indexPath.row].score?.fullTime?.home ?? 0)"
       
@@ -96,17 +104,17 @@ extension CompetitionDetailsViewController: UICollectionViewDataSource, UICollec
     return cell
   }
   
-//  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//    let match = MatchViewController()
-//    if viewModel.isUsingCoreData {
-//      match.indexPath = indexPath.row
-//      match.matchID = viewModel.coreDataCompetitionDetails?[indexPath.row].value(forKey: "matchID") as? Int
-//    }else{
-//      match.indexPath = indexPath.row
-//      match.matchID = matches[indexPath.row].id
-//    }
-//    self.navigationController?.pushViewController(match, animated: true)
-//  }
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    let match = MatchDetailsViewController()
+    if viewModel.isUsingCoreData {
+      match.indexPath = indexPath.row
+      match.matchID = viewModel.coreDataCompetitionDetails?[indexPath.row].value(forKey: "matchID") as? Int
+    }else{
+      match.indexPath = indexPath.row
+      match.matchID = matches[indexPath.row].id
+    }
+    self.navigationController?.pushViewController(match, animated: true)
+  }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     return CGSize(width: 348, height: 155)
