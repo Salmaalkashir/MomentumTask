@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0B879A02F4D9DAB143D1B5B7 /* Pods_MomentumTask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4B49915C2E687CAA1A4904A /* Pods_MomentumTask.framework */; };
+		387E72912CEEBA0A00CA9C62 /* CompetitionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387E728F2CEEBA0A00CA9C62 /* CompetitionDetailsViewController.swift */; };
+		387E72922CEEBA0A00CA9C62 /* CompetitionDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 387E72902CEEBA0A00CA9C62 /* CompetitionDetailsViewController.xib */; };
 		388575E12CEE67170068B6BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388575E02CEE67170068B6BF /* AppDelegate.swift */; };
 		388575E32CEE67170068B6BF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388575E22CEE67170068B6BF /* SceneDelegate.swift */; };
 		388575EB2CEE67170068B6BF /* MomentumTask.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 388575E92CEE67170068B6BF /* MomentumTask.xcdatamodeld */; };
@@ -22,10 +24,16 @@
 		388576222CEE75170068B6BF /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388576212CEE75170068B6BF /* CoreDataManager.swift */; };
 		388576242CEE77660068B6BF /* Competitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388576232CEE77660068B6BF /* Competitions.swift */; };
 		388576272CEE82C60068B6BF /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388576262CEE82C60068B6BF /* Helpers.swift */; };
+		388576292CEE881D0068B6BF /* CompetitionsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388576282CEE881D0068B6BF /* CompetitionsRepository.swift */; };
+		3885762B2CEE89FE0068B6BF /* CompetitionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3885762A2CEE89FE0068B6BF /* CompetitionsViewModel.swift */; };
+		3885762E2CEE90B10068B6BF /* CompetitionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3885762C2CEE90B10068B6BF /* CompetitionCollectionViewCell.swift */; };
+		3885762F2CEE90B10068B6BF /* CompetitionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3885762D2CEE90B10068B6BF /* CompetitionCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		135EB21D7F768175B4D91836 /* Pods-MomentumTask.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MomentumTask.debug.xcconfig"; path = "Target Support Files/Pods-MomentumTask/Pods-MomentumTask.debug.xcconfig"; sourceTree = "<group>"; };
+		387E728F2CEEBA0A00CA9C62 /* CompetitionDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionDetailsViewController.swift; sourceTree = "<group>"; };
+		387E72902CEEBA0A00CA9C62 /* CompetitionDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompetitionDetailsViewController.xib; sourceTree = "<group>"; };
 		388575DD2CEE67170068B6BF /* MomentumTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MomentumTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		388575E02CEE67170068B6BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		388575E22CEE67170068B6BF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -33,7 +41,7 @@
 		388575EC2CEE67350068B6BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		388575EF2CEE67350068B6BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		388575F12CEE67350068B6BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		388576032CEE6BFD0068B6BF /* CompetitionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionsViewController.swift; sourceTree = "<group>"; };
+		388576032CEE6BFD0068B6BF /* CompetitionsViewController.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = CompetitionsViewController.swift; sourceTree = "<group>"; tabWidth = 2; };
 		388576042CEE6BFD0068B6BF /* CompetitionsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompetitionsViewController.xib; sourceTree = "<group>"; };
 		388576192CEE6F610068B6BF /* NetworkManager.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; tabWidth = 2; };
 		3885761B2CEE70410068B6BF /* Constants.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; tabWidth = 2; };
@@ -42,6 +50,10 @@
 		388576212CEE75170068B6BF /* CoreDataManager.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; tabWidth = 2; };
 		388576232CEE77660068B6BF /* Competitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Competitions.swift; sourceTree = "<group>"; };
 		388576262CEE82C60068B6BF /* Helpers.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; tabWidth = 2; };
+		388576282CEE881D0068B6BF /* CompetitionsRepository.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = CompetitionsRepository.swift; sourceTree = "<group>"; tabWidth = 2; };
+		3885762A2CEE89FE0068B6BF /* CompetitionsViewModel.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = CompetitionsViewModel.swift; sourceTree = "<group>"; tabWidth = 2; };
+		3885762C2CEE90B10068B6BF /* CompetitionCollectionViewCell.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = CompetitionCollectionViewCell.swift; sourceTree = "<group>"; tabWidth = 2; };
+		3885762D2CEE90B10068B6BF /* CompetitionCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompetitionCollectionViewCell.xib; sourceTree = "<group>"; };
 		571724B0C717464583A8C55C /* Pods-MomentumTask.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MomentumTask.release.xcconfig"; path = "Target Support Files/Pods-MomentumTask/Pods-MomentumTask.release.xcconfig"; sourceTree = "<group>"; };
 		F4B49915C2E687CAA1A4904A /* Pods_MomentumTask.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MomentumTask.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -58,6 +70,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		387E72932CEEBA1600CA9C62 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				3885762C2CEE90B10068B6BF /* CompetitionCollectionViewCell.swift */,
+				3885762D2CEE90B10068B6BF /* CompetitionCollectionViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		388575D42CEE67160068B6BF = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +186,7 @@
 		388575FF2CEE6B980068B6BF /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				3885762A2CEE89FE0068B6BF /* CompetitionsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -172,6 +194,7 @@
 		388576002CEE6BA00068B6BF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				387E72932CEEBA1600CA9C62 /* Cells */,
 				388576032CEE6BFD0068B6BF /* CompetitionsViewController.swift */,
 				388576042CEE6BFD0068B6BF /* CompetitionsViewController.xib */,
 			);
@@ -181,6 +204,7 @@
 		388576012CEE6BA90068B6BF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				388576232CEE77660068B6BF /* Competitions.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -188,6 +212,7 @@
 		388576022CEE6BAF0068B6BF /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				388576282CEE881D0068B6BF /* CompetitionsRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -240,6 +265,8 @@
 		3885760C2CEE6E3B0068B6BF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				387E728F2CEEBA0A00CA9C62 /* CompetitionDetailsViewController.swift */,
+				387E72902CEEBA0A00CA9C62 /* CompetitionDetailsViewController.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -255,7 +282,6 @@
 		3885760E2CEE6E4D0068B6BF /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				388576232CEE77660068B6BF /* Competitions.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -423,9 +449,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3885762F2CEE90B10068B6BF /* CompetitionCollectionViewCell.xib in Resources */,
 				388575F02CEE67350068B6BF /* LaunchScreen.storyboard in Resources */,
 				388575ED2CEE67350068B6BF /* Assets.xcassets in Resources */,
 				388576062CEE6BFD0068B6BF /* CompetitionsViewController.xib in Resources */,
+				387E72922CEEBA0A00CA9C62 /* CompetitionDetailsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,11 +506,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				387E72912CEEBA0A00CA9C62 /* CompetitionDetailsViewController.swift in Sources */,
 				388576052CEE6BFD0068B6BF /* CompetitionsViewController.swift in Sources */,
 				388576202CEE71200068B6BF /* Encodable+Extension.swift in Sources */,
+				3885762B2CEE89FE0068B6BF /* CompetitionsViewModel.swift in Sources */,
 				388575E12CEE67170068B6BF /* AppDelegate.swift in Sources */,
+				3885762E2CEE90B10068B6BF /* CompetitionCollectionViewCell.swift in Sources */,
 				3885761A2CEE6F610068B6BF /* NetworkManager.swift in Sources */,
 				388576272CEE82C60068B6BF /* Helpers.swift in Sources */,
+				388576292CEE881D0068B6BF /* CompetitionsRepository.swift in Sources */,
 				388575EB2CEE67170068B6BF /* MomentumTask.xcdatamodeld in Sources */,
 				388575E32CEE67170068B6BF /* SceneDelegate.swift in Sources */,
 				388576222CEE75170068B6BF /* CoreDataManager.swift in Sources */,

@@ -10,7 +10,8 @@ import CoreData
 
 //MARK: - CoreDataManagerProtocol
 protocol CoreDataManagerProtocol {
-  
+  func SaveCompetitionCoreData(competition: CompetitionInfo?)
+  func RetrieveCompetitionsFromCoreData() -> [NSManagedObject]?
 }
 
 //MARK: - CoreDataManager
@@ -62,6 +63,22 @@ class CoreDataManager: CoreDataManagerProtocol {
       }
     }catch {
       print("Failed to fetch or save competitions CoreData")
+    }
+  }
+  
+  func RetrieveCompetitionsFromCoreData() -> [NSManagedObject]? {
+    let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Competitions")
+    do {
+      let retrievedArray = try managedContext.fetch(fetchRequest)
+      if retrievedArray.count > 0 {
+        return retrievedArray
+      } else {
+        print("No competitions found in CoreData")
+        return nil
+      }
+    } catch {
+      print("Failed to fetch competitions from CoreData: \(error)")
+      return nil
     }
   }
 }
