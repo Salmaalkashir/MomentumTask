@@ -7,12 +7,17 @@
 
 import Foundation
 import RxSwift
+import CoreData
 
 //MARK: - CompetitionDetailsViewModelProtocol
 protocol CompetitionDetailsViewModelProtocol {
-  func fetchCompetitionDetails(competitionID: Int)
+  func fetchCompetitionDetails()
   var competitionDetailsData: Observable<[Match]>? {get}
   var errorMessage: Observable<String>? {get}
+  var coreDataCompetitionDetails: [NSManagedObject]? {get set}
+  var isUsingCoreData: Bool {get}
+  var competitionID: Int? {get set}
+  func retrieveCompetitionFromCoreData() -> [NSManagedObject]
 }
 
 //MARK: - CompetitionDetailsViewModel
@@ -35,14 +40,18 @@ class CompetitionDetailsViewModel: CompetitionDetailsViewModelProtocol {
   init(repository: CompetitionDetailsRepositoryProtocol = CompetitionDetailsRepository()) {
       self.repository = repository
   }
+  var competitionID: Int?
 
-  func fetchCompetitionDetails(competitionID: Int) {
+  func fetchCompetitionDetails() {
       print("Fetching news data...")
-    repository.getCompetitionDetailsData(competitionID: competitionID)
+    repository.getCompetitionDetailsData(competitionID: competitionID ?? 0)
           .observe(on: MainScheduler.instance)
           .subscribe(
               onNext: { [weak self] details in
                 self?.matches.onNext(details.matches ?? [])
+                for match in details.matches ?? [] {
+                  self?.repository.saveCompetitionsDetailsToCoreData(match: match)
+                }
                 self?.isUsingCoreData = false
               },
               onError: { [weak self] error in
@@ -65,18 +74,10 @@ class CompetitionDetailsViewModel: CompetitionDetailsViewModelProtocol {
           .disposed(by: disposeBag)
   }
   
-//  var coreDataCompetitions: [NSManagedObject]?
-//
-//  func retrieveCompetitionFromCoreData() -> [NSManagedObject] {
-//    return repository.retrieveCompetitionFromCoreData()
-//  }
-  
-//  func getCellsCount() -> Int {
-//    if isUsingCoreData {
-//      return coreDataCompetitions?.count ?? 0
-//    }else {
-//      return freeCompetitionsIds.count
-//    }
-//  }
+  var coreDataCompetitionDetails: [NSManagedObject]?
+
+  func retrieveCompetitionFromCoreData() -> [NSManagedObject] {
+    return repository.retrieveCompetitionDetailsFromCoreData(competitionID: competitionID ?? 0)
+  }
 }
 

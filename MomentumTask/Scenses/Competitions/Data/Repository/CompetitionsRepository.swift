@@ -51,7 +51,7 @@ class CompetitionsRepository: CompetitionsRepositoryProtocol {
             return Observable.error(NetworkError.invalidResponse)
           }
         }
-        return Observable.error(error)  
+        return Observable.error(error)
       }
   }
   

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0B879A02F4D9DAB143D1B5B7 /* Pods_MomentumTask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4B49915C2E687CAA1A4904A /* Pods_MomentumTask.framework */; };
+		387578D12CEF942C00D30C68 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387578D02CEF942B00D30C68 /* UIViewController+Extension.swift */; };
+		387578D52CEF973200D30C68 /* MatchesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387578D32CEF973200D30C68 /* MatchesCollectionViewCell.swift */; };
+		387578D62CEF973200D30C68 /* MatchesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 387578D42CEF973200D30C68 /* MatchesCollectionViewCell.xib */; };
 		387E72912CEEBA0A00CA9C62 /* CompetitionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387E728F2CEEBA0A00CA9C62 /* CompetitionDetailsViewController.swift */; };
 		387E72922CEEBA0A00CA9C62 /* CompetitionDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 387E72902CEEBA0A00CA9C62 /* CompetitionDetailsViewController.xib */; };
 		388575E12CEE67170068B6BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388575E02CEE67170068B6BF /* AppDelegate.swift */; };
@@ -35,6 +38,9 @@
 
 /* Begin PBXFileReference section */
 		135EB21D7F768175B4D91836 /* Pods-MomentumTask.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MomentumTask.debug.xcconfig"; path = "Target Support Files/Pods-MomentumTask/Pods-MomentumTask.debug.xcconfig"; sourceTree = "<group>"; };
+		387578D02CEF942B00D30C68 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		387578D32CEF973200D30C68 /* MatchesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesCollectionViewCell.swift; sourceTree = "<group>"; };
+		387578D42CEF973200D30C68 /* MatchesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MatchesCollectionViewCell.xib; sourceTree = "<group>"; };
 		387E728F2CEEBA0A00CA9C62 /* CompetitionDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionDetailsViewController.swift; sourceTree = "<group>"; };
 		387E72902CEEBA0A00CA9C62 /* CompetitionDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompetitionDetailsViewController.xib; sourceTree = "<group>"; };
 		388575DD2CEE67170068B6BF /* MomentumTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MomentumTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,6 +82,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		387578D22CEF970F00D30C68 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				387578D32CEF973200D30C68 /* MatchesCollectionViewCell.swift */,
+				387578D42CEF973200D30C68 /* MatchesCollectionViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		387E72932CEEBA1600CA9C62 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -122,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				3885761F2CEE71200068B6BF /* Encodable+Extension.swift */,
+				387578D02CEF942B00D30C68 /* UIViewController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -272,6 +288,7 @@
 		3885760C2CEE6E3B0068B6BF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				387578D22CEF970F00D30C68 /* Cells */,
 				387E728F2CEEBA0A00CA9C62 /* CompetitionDetailsViewController.swift */,
 				387E72902CEEBA0A00CA9C62 /* CompetitionDetailsViewController.xib */,
 			);
@@ -460,6 +477,7 @@
 			files = (
 				3885762F2CEE90B10068B6BF /* CompetitionCollectionViewCell.xib in Resources */,
 				388575F02CEE67350068B6BF /* LaunchScreen.storyboard in Resources */,
+				387578D62CEF973200D30C68 /* MatchesCollectionViewCell.xib in Resources */,
 				388575ED2CEE67350068B6BF /* Assets.xcassets in Resources */,
 				388576062CEE6BFD0068B6BF /* CompetitionsViewController.xib in Resources */,
 				387E72922CEEBA0A00CA9C62 /* CompetitionDetailsViewController.xib in Resources */,
@@ -523,7 +541,9 @@
 				388575E12CEE67170068B6BF /* AppDelegate.swift in Sources */,
 				3885762E2CEE90B10068B6BF /* CompetitionCollectionViewCell.swift in Sources */,
 				3885761A2CEE6F610068B6BF /* NetworkManager.swift in Sources */,
+				387578D12CEF942C00D30C68 /* UIViewController+Extension.swift in Sources */,
 				388A7BC22CEEBFFB006E46FC /* CompetitionDetailsRepository.swift in Sources */,
+				387578D52CEF973200D30C68 /* MatchesCollectionViewCell.swift in Sources */,
 				388E1ABE2CEECD2D00694550 /* CompetitionDetailsViewModel.swift in Sources */,
 				388576272CEE82C60068B6BF /* Helpers.swift in Sources */,
 				388576292CEE881D0068B6BF /* CompetitionsRepository.swift in Sources */,

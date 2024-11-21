@@ -7,6 +7,7 @@
 
 import UIKit
 import SDWebImage
+import SDWebImageSVGCoder
 
 class CompetitionCollectionViewCell: UICollectionViewCell {
   @IBOutlet private weak var cellView: UIView!
@@ -22,21 +23,29 @@ class CompetitionCollectionViewCell: UICollectionViewCell {
   }
   
   func ConfigureCell(image: Any, competitionName: String, competitionCode: String, matchDay: Int, numberOfSeasons: Int) {
-      if let imageString = image as? String {
-          competitionImage.sd_setImage(with: URL(string: imageString))
-      } else if let imageData = image as? Data {
-          if let image = UIImage(data: imageData) {
-              competitionImage.image = image
-          }
-      }
-      self.competitionName.text = competitionName
-      self.competitionCode.text = "Code: \(competitionCode)"
-      self.matchDay.text = "Current match day: \(String(matchDay))"
-      self.numberOfSeasons.text = "Number of seasons: \(String(numberOfSeasons))"
-  }
-
+     SDImageCodersManager.shared.addCoder(SDImageSVGCoder.shared)
+     
+     if let imageString = image as? String {
+       competitionImage.sd_setImage(with: URL(string: imageString), placeholderImage: UIImage(named: "splash"))
+     } else if let imageData = image as? Data {
+       // Try converting image to non-indexed format if it's indexed PNG
+       if let image = UIImage(data: imageData) {
+         if let cgImage = image.cgImage, cgImage.colorSpace?.model == .indexed {
+           // Workaround: Convert indexed image to RGBA
+           competitionImage.image = UIImage(cgImage: cgImage.copy()!)
+         } else {
+           competitionImage.image = image
+         }
+       }
+     }
+     
+     self.competitionName.text = competitionName
+     self.competitionCode.text = "Code: \(competitionCode)"
+     self.matchDay.text = "Current match day: \(String(matchDay))"
+     self.numberOfSeasons.text = "Number of seasons: \(String(numberOfSeasons))"
+   }
   
-  func ConfigureCellView() {
+private func ConfigureCellView() {
     cellView.layer.shadowColor = UIColor.gray.cgColor
     cellView.layer.shadowOpacity = 0.4
     cellView.layer.shadowOffset = CGSize(width: 0, height: 2)

@@ -8,18 +8,33 @@
 import Foundation
 
 class Helpers {
-  static func convertStringToData(image: String) -> Data? {
-    guard let url = URL(string: image) else {
-      print("Invalid URL")
-      return nil
+    // Convert string to data asynchronously and return synchronously
+    static func convertStringToDataAsync(image: String) -> Data? {
+      var resultData: Data?
+      
+      DispatchQueue.global(qos: .background).async {
+        // Check if the string represents a valid local file path
+        if let url = URL(string: image), FileManager.default.fileExists(atPath: url.path) {
+          do {
+            resultData = try Data(contentsOf: url)
+          } catch {
+            print("Error loading data from file: \(error)")
+          }
+        } else {
+          print("Invalid or non-existent file path.")
+        }
+        
+        // Now, switch back to the main thread to update any UI or handle further tasks
+        DispatchQueue.main.async {
+          // Here you can use the resultData or update the UI
+          // resultData can be used by your view controller or model
+        }
+      }
+      
+      // Since the method is async, it will return `nil` immediately, but the work is happening in the background
+      return resultData
     }
-    do {
-      return try Data(contentsOf: url)
-    } catch {
-      print("Error loading data from URL: \(error)")
-      return nil
-    }
-  }
+
   
 static func convertUTCDateString(_ utcDateString: String) -> String? {
       let utcFormatter = DateFormatter()

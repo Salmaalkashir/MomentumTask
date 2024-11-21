@@ -12,6 +12,8 @@ import CoreData
 //MARK: - CompetitionDetailsRepositoryProtocol
 protocol CompetitionDetailsRepositoryProtocol {
   func getCompetitionDetailsData(competitionID: Int) -> Observable<Details>
+  func saveCompetitionsDetailsToCoreData(match: Match)
+  func retrieveCompetitionDetailsFromCoreData(competitionID: Int) -> [NSManagedObject]
 }
 
 //MARK: - CompetitionDetailsRepository
@@ -28,7 +30,7 @@ class CompetitionDetailsRepository: CompetitionDetailsRepositoryProtocol {
   func getCompetitionDetailsData(competitionID: Int) -> Observable<Details> {
     let request = APIBuilder()
       .setUrl(hostUrl: "https://api.football-data.org/v4/competitions/\(competitionID)/matches")
-      .setHeaders(key: "X-Auth-Token", value: "53448c41dd2448c0b034bdb933779844")
+      .setHeaders(key: "X-Auth-Token", value: "43de387ffc01456baaf9f05ba3500e15")
       .build()
     
     return networkService.requestData(Details.self, request: request)
@@ -58,7 +60,7 @@ class CompetitionDetailsRepository: CompetitionDetailsRepositoryProtocol {
     coreData.SaveCompetitionDetailsCoreData(matches: match)
   }
   
-  func retrieveCompetitionDetailsFromCoreData() -> [NSManagedObject] {
-    return coreData.RetrieveCompetitionsFromCoreData() ?? []
+  func retrieveCompetitionDetailsFromCoreData(competitionID: Int) -> [NSManagedObject] {
+    return coreData.RetrieveCompetitionDetailsFromCoreData(competitionID: competitionID) ?? []
   }
 }

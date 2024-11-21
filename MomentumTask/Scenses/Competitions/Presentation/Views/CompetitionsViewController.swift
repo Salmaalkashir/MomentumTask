@@ -92,8 +92,10 @@ extension CompetitionsViewController: UICollectionViewDelegate, UICollectionView
     let competitionDetails = CompetitionDetailsViewController()
     if viewModel.isUsingCoreData{
       competitionDetails.competitionID = viewModel.coreDataCompetitions?[indexPath.row].value(forKey: "competitionID") as? Int
+      competitionDetails.competitionName = viewModel.coreDataCompetitions?[indexPath.row].value(forKey: "name") as? String
     }else {
       competitionDetails.competitionID = competitions[indexPath.row].id
+      competitionDetails.competitionName = competitions[indexPath.row].name
     }
     self.navigationController?.pushViewController(competitionDetails, animated: true)
   }

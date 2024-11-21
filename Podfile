@@ -6,6 +6,7 @@ target 'MomentumTask' do
   use_frameworks!
 pod 'RxSwift', '~> 6.8'
 pod 'SDWebImage', '~> 5.19'
+pod 'SDWebImageSVGCoder', '~> 1.7'
   # Pods for MomentumTask
 
 end

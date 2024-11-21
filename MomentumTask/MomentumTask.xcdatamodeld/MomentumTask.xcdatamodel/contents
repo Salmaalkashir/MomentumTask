@@ -4,6 +4,7 @@
         <attribute name="awayShortName" optional="YES" attributeType="String"/>
         <attribute name="awayTeamImage" optional="YES" attributeType="Binary"/>
         <attribute name="awayTeamName" optional="YES" attributeType="String"/>
+        <attribute name="competitionID" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="homeShortName" optional="YES" attributeType="String"/>
         <attribute name="homeTeamImage" optional="YES" attributeType="Binary"/>
         <attribute name="homeTeamName" optional="YES" attributeType="String"/>
